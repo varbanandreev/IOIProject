@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+<body>
+<header th:replace="partials :: header"></header>
+<div class="col-6">
+    <h3 th:unless="${olympiads} and ${olympiads.size()}">No olympiads found.</h3>
+    <table th:if="${olympiads.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <th>Year</th>
+        <th>Host</th>
+        <th>City</th>
+        <th>Contestants</th>
+        <th>Countries</th>
+        <tr th:each="olympiad : ${olympiads}">
+            <td th:text="${olympiad.id}"></td>
+            <td th:text="${#dates.format(olympiad.date, 'yyyy')}"></td>
+            <td th:text="${olympiad.host.name}"></td>
+            <td th:text="${olympiad.city}"></td>
+            <td th:text="${olympiad.contestants}"></td>
+            <td th:text="${olympiad.countries}"></td>
+            <td><a class="btn btn-info" th:href="@{'/olympiads/edit-olympiad/'+${olympiad.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/olympiads/delete/'+${olympiad.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="partials :: footer"></footer>
+</body>
+</html>

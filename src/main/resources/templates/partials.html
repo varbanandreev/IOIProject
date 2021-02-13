@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:partial="head">
+    <title>IOI Statistics</title>
+    <meta charset="UTF-8">
+    <link href="/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<header th:partial="header">
+    <h1 id="title">IOI Statistics System</h1>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light" th:partial="navigation">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/countries/create-country">Add Country</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/countries">Countries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/olympiads/create-olympiad">Add Olympiad</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/olympiads">Olympiads</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/results/create-result">Add Result</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/results">Results</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer page-footer font-small>
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <a href="#"> IOI Statistics System </a>
+    </div>
+</footer>
+</html>

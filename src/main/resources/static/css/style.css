@@ -1,0 +1,50 @@
+#navbar {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    max-width: 70%;
+    left: 15%;
+    border-radius: 8px;
+}
+
+#title {
+    font-weight: 700;
+    margin: 20px;
+    text-align: center;
+}
+
+#navbarSupportedContent {
+    text-align: center;
+}
+
+.navbar-nav {
+    width: 100% !important;
+    display: inline-block !important;
+}
+
+.nav-item {
+    display: inline-block !important;
+}
+
+body {
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(248,64,220,1) 0%, rgba(0,212,255,1) 100%) !important;
+}
+
+#welcome {
+    text-align: center;
+}
+
+.col-6 {
+    max-width: 70% !important;
+    left: 15% !important;
+}
+
+h4 {
+    text-align: center;
+}
+
+.form-center {
+    max-width: 60% !important;
+    left: 20% !important;
+    position: relative !important;
+}
