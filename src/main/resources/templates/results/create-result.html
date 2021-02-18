@@ -8,51 +8,43 @@
     <form action="#" th:action="@{/results/create}" th:object="${result}" method="post">
         <div class="form-group form-center">
             <div class="form-group">
-                <label for="olympiad">Olympiad</label>
-                <select class="form-control" th:field="${result.olympiad}" id="olympiad">
-                    <option value="">Select Olympiad</option>
-                    <option th:each="p : ${olympiads}" th:value="${p.id}"
+                <label for="country">Country</label>
+                <select class="form-control" th:field="*{country}" id="country">
+                    <option disabled value="">Select Country</option>
+                    <option th:each="p : ${countries}" th:value="${p.id}"
                             th:text="${p.name}"></option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label for="country">Country</label>
-                <select class="form-control" th:field="${result.country}" id="country">
-                    <option value="">Select Country</option>
-                    <option th:each="d : ${countries}" th:value="${d.id}"
-                            th:text="${d.name}"></option>
+                <label for="olympiad">Olympiad</label>
+                <select class="form-control" th:field="*{olympiad}" id="olympiad">
+                    <option disabled value="">Select Olympiad</option>
+                    <option th:each="p : ${olympiads}" th:value="${p.id}"
+                            th:text="|${p.city} ${#dates.format(p.date, 'yyyy-MM-dd')}|"></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="date">Date</label>
-                <input class="form-control" type="date" th:field="*{date}" id="date">
-                <span class="text-danger" th:if="${#fields.hasErrors('date')}"
-                      th:errors="*{date}">Date Error</span>
+                <label for="medal">Medal</label>
+                <select class="form-control" id="medal">
+                    <option disabled value="">Select Medal</option>
+                    <option value="1">Gold</option>
+                    <option value="2">Silver</option>
+                    <option value="3">Bronze</option>
+                    <option value="4">None</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="diagnosis">Diagnosis</label>
-                <input class="form-control" type="text" th:field="*{diagnosis}" placeholder="Diagnosis" id="diagnosis">
-                <span class="text-danger" th:if="${#fields.hasErrors('diagnosis')}" th:errors="*{diagnosis}">Diagnosis Error</span>
+                <label for="olymRank">Rank</label>
+                <input class="form-control" type="text" th:field="*{olymRank}" placeholder="Rank" id="olymRank">
+                <span class="text-danger" th:if="${#fields.hasErrors('olymRank')}" th:errors="*{olymRank}">Rank Error</span>
             </div>
             <div class="form-group">
-                <label for="treatment">Treatment</label>
-                <input class="form-control" type="text" th:field="*{treatment}" placeholder="Treatment" id="treatment">
-                <span class="text-danger" th:if="${#fields.hasErrors('treatment')}" th:errors="*{treatment}">Treatment Error</span>
+                <label for="contestantName">Contestant</label>
+                <input class="form-control" type="text" th:field="*{contestantName}" placeholder="Contestant Name" id="contestantName">
+                <span class="text-danger" th:if="${#fields.hasErrors('contestantName')}" th:errors="*{contestantName}">Contestant Error</span>
             </div>
-            <div class="form-group">
-                <label for="slstart">Sick Leave Start</label>
-                <input class="form-control" type="date" th:field="*{sickLeaveStart}" id="slstart">
-                <span class="text-danger" th:if="${#fields.hasErrors('sickLeaveStart')}"
-                      th:errors="*{sickLeaveStart}">Sick Leave Start Error</span>
-            </div>
-            <div class="form-group">
-                <label for="sldays">Sick Leave Days</label>
-                <input class="form-control" type="text" th:field="*{sickLeaveDays}"
-                       placeholder="Sick Leave Days" id="sldays">
-                <span class="text-danger" th:if="${#fields.hasErrors('sickLeaveDays')}"
-                      th:errors="*{sickLeaveDays}">Sick Leave Days Error</span>
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Add</button>
         </div>
     </form>
 </div>
