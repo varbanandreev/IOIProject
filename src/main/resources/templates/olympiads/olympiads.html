@@ -14,7 +14,6 @@
         <th>Countries</th>
         <th></th>
         <th></th>
-        <th></th>
         <tr th:each="olympiad : ${olympiads}">
             <td th:text="${olympiad.id}"></td>
             <td th:text="${#dates.format(olympiad.date, 'yyyy')}"></td>
@@ -22,7 +21,6 @@
             <td th:text="${olympiad.city}"></td>
             <td th:text="${olympiad.contestants}"></td>
             <td th:text="${olympiad.countries}"></td>
-            <td><a class="btn btn-primary" th:href="@{'/results/create-result/'+${olympiad.id}}">Add Result</a></td>
             <td><a class="btn btn-info" th:href="@{'/olympiads/edit-olympiad/'+${olympiad.id}}">Edit</a></td>
             <td><a class="btn btn-danger" th:href="@{'/olympiads/delete/'+${olympiad.id}}">Delete</a></td>
         </tr>

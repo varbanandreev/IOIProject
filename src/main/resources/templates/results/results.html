@@ -6,23 +6,19 @@
 <div class="col-6">
     <h3 th:unless="${results} and ${results.size()}">No results found.</h3>
     <table th:if="${results.size()>0}" class="table table-hover">
-        <th>Id</th>
         <th>Olympiad</th>
         <th>Country</th>
-        <th>Visit Date</th>
-        <th>Diagnosis</th>
-        <th>Treatment</th>
-        <th>Sick Leave Start</th>
-        <th>Sick Leave Days</th>
+        <th>Date</th>
+        <th>Contestant</th>
+        <th>Rank</th>
+        <th>Medal</th>
         <tr th:each="result : ${results}">
-            <td th:text="${result.id}"></td>
-            <td th:text="${result.olympiad.name}"></td>
+            <td th:text="${result.olympiad.city}"></td>
             <td th:text="${result.country.name}"></td>
-            <td th:text="${#dates.format(result.date, 'dd-MMM-yyyy')}"></td>
-            <td th:text="${result.diagnosis}"></td>
-            <td th:text="${result.treatment}"></td>
-            <td th:text="${#dates.format(result.sickLeaveStart, 'dd-MMM-yyyy')}"></td>
-            <td th:text="${result.sickLeaveDays}"></td>
+            <td th:text="${#dates.format(result.olympiad.date, 'dd-MMM-yyyy')}"></td>
+            <td th:text="${result.contestantName}"></td>
+            <td th:text="${result.olymRank}"></td>
+            <td th:text="${result.medal}"></td>
         </tr>
     </table>
 </div>

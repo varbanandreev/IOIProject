@@ -34,15 +34,12 @@ public class ResultController {
         return "/results/search";
     }
 
-//    @GetMapping("/olympiad")
-//    public String getResultsByPatientName(Model model, @RequestParam String patientName) {
-//        final List<ResultViewModel> results = resultService.getResultsByPatientName(patientName)
-//                .stream()
-//                .map(this::convertToResultViewModel)
-//                .collect(Collectors.toList());
-//        model.addAttribute("results", results);
-//        return "/results/results";
-//    }
+    @GetMapping("/olympiad")
+    public String getResultsByPatientName(Model model, @RequestParam String olympiadHost) {
+        model.addAttribute("results", resultService.get());
+        model.addAttribute("olympiads", olympiadService.get());
+        return "/results/results";
+    }
 
     @GetMapping("/create-result")
     public String createResultForm(Model model) {
