@@ -12,6 +12,8 @@
         <th>City</th>
         <th>Contestants</th>
         <th>Countries</th>
+        <th></th>
+        <th></th>
         <tr th:each="olympiad : ${olympiads}">
             <td th:text="${olympiad.id}"></td>
             <td th:text="${#dates.format(olympiad.date, 'yyyy')}"></td>

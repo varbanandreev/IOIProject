@@ -1,5 +1,6 @@
 package com.java.untitled.web.controllers;
 
+import com.java.untitled.data.entity.Medal;
 import com.java.untitled.dto.ResultDTO;
 import com.java.untitled.services.CountryService;
 import com.java.untitled.services.OlympiadService;
@@ -11,12 +12,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -32,21 +32,22 @@ public class ResultController {
         return "/results/search";
     }
 
-//    @GetMapping("/olympiad")
-//    public String getResultsByPatientName(Model model, @RequestParam String patientName) {
-//        final List<ResultViewModel> results = resultService.getResultsByPatientName(patientName)
-//                .stream()
-//                .map(this::convertToResultViewModel)
-//                .collect(Collectors.toList());
-//        model.addAttribute("results", results);
-//        return "/results/results";
-//    }
+    @GetMapping("/olympiad")
+    public String getResultsByCountry(Model model, @RequestParam String countryName) {
+        final List<ResultViewModel> results = resultService.getResultsByCountryName(countryName)
+                .stream()
+                .map(this::convertToResultViewModel)
+                .collect(Collectors.toList());
+        model.addAttribute("results", results);
+        return "/results/results";
+    }
 
     @GetMapping("/create-result")
     public String createResultForm(Model model) {
-        //model.addAttribute("result", new CreateResultViewModel());
-        //model.addAttribute("patients", olympiadService.get());
-        //model.addAttribute("doctors", countryService.get());
+        model.addAttribute("result", new CreateResultViewModel());
+        model.addAttribute("olympiads", olympiadService.get());
+        model.addAttribute("countries", countryService.get());
+        model.addAttribute("medals", Medal.values());
         return "/results/create-result";
     }
 
@@ -54,8 +55,8 @@ public class ResultController {
     public String createResult(@Valid @ModelAttribute("result") CreateResultViewModel result,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            //model.addAttribute("patients", olympiadService.get());
-            //model.addAttribute("doctors", countryService.get());
+            model.addAttribute("olympiads", olympiadService.get());
+            model.addAttribute("countries", countryService.get());
             return "/results/create-result";
         }
         resultService.create(modelMapper.map(result, ResultDTO.class));

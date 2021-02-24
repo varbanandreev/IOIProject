@@ -7,7 +7,38 @@
 <br>
 <h1 id="welcome" th:text="${welcome}"></h1>
 <br>
-<br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <h3>Countries</h3>
+        <h3 th:unless="${countries} and ${countries.size()}">No countries found.</h3>
+        <table th:if="${countries.size()>0}" class="table table-hover">
+            <th>Name</th>
+            <tr th:each="country : ${countries}">
+                <td th:text="${country.name}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-3">
+        <h3>Olympiads</h3>
+        <h3 th:unless="${olympiads} and ${olympiads.size()}">No olympiads found.</h3>
+        <table th:if="${olympiads.size()>0}" class="table table-hover">
+            <th>Year</th>
+            <th>Host</th>
+            <th>City</th>
+            <th>Contestants</th>
+            <th>Countries</th>
+            <tr th:each="olympiad : ${olympiads}">
+                <td th:text="${#dates.format(olympiad.date, 'yyyy')}"></td>
+                <td th:text="${olympiad.host.name}"></td>
+                <td th:text="${olympiad.city}"></td>
+                <td th:text="${olympiad.contestants}"></td>
+                <td th:text="${olympiad.countries}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 <footer th:replace="partials :: footer"></footer>
 </body>
 </html>

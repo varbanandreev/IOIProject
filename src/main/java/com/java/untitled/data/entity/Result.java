@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -15,11 +14,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "result")
 public class Result extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "olympiad_id")
-    private Olympiad olympiad;
+    @NotBlank
+    private String contestantName;
 
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @ManyToOne
+    @JoinColumn(name = "olympiad_id")
+    private Olympiad olympiad;
+
+    @NotNull
+    private Integer olympiadRank;
+
+    @Enumerated
+    private Medal medal;
 }
