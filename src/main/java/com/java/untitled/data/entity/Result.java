@@ -14,20 +14,20 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "result")
 public class Result extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "olympiad_id")
-    private Olympiad olympiad;
+    @NotBlank
+    private String contestantName;
 
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @Enumerated
-    private Medal medal;
-
-    @NotBlank
-    private String contestantName;
+    @ManyToOne
+    @JoinColumn(name = "olympiad_id")
+    private Olympiad olympiad;
 
     @NotNull
-    private Integer olymRank;
+    private Integer olympiadRank;
+
+    @Enumerated
+    private Medal medal;
 }

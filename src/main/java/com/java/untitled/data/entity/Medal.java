@@ -1,6 +1,5 @@
 package com.java.untitled.data.entity;
 
 public enum Medal {
-    GOLD, SILVER, BRONZE, None;
-
+    GOLD, SILVER, BRONZE, NONE;
 }

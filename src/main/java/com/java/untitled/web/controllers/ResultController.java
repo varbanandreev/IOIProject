@@ -1,13 +1,11 @@
 package com.java.untitled.web.controllers;
 
-import com.java.untitled.dto.OlympiadDTO;
+import com.java.untitled.data.entity.Medal;
 import com.java.untitled.dto.ResultDTO;
 import com.java.untitled.services.CountryService;
 import com.java.untitled.services.OlympiadService;
 import com.java.untitled.services.ResultService;
-import com.java.untitled.web.viewmodels.CountryViewModel;
 import com.java.untitled.web.viewmodels.CreateResultViewModel;
-import com.java.untitled.web.viewmodels.OlympiadViewModel;
 import com.java.untitled.web.viewmodels.ResultViewModel;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -35,18 +33,21 @@ public class ResultController {
     }
 
     @GetMapping("/olympiad")
-    public String getResultsByPatientName(Model model, @RequestParam String olympiadHost) {
-        model.addAttribute("results", resultService.get());
-        model.addAttribute("olympiads", olympiadService.get());
+    public String getResultsByCountry(Model model, @RequestParam String countryName) {
+        final List<ResultViewModel> results = resultService.getResultsByCountryName(countryName)
+                .stream()
+                .map(this::convertToResultViewModel)
+                .collect(Collectors.toList());
+        model.addAttribute("results", results);
         return "/results/results";
     }
 
     @GetMapping("/create-result")
     public String createResultForm(Model model) {
-
         model.addAttribute("result", new CreateResultViewModel());
         model.addAttribute("olympiads", olympiadService.get());
         model.addAttribute("countries", countryService.get());
+        model.addAttribute("medals", Medal.values());
         return "/results/create-result";
     }
 
@@ -54,6 +55,8 @@ public class ResultController {
     public String createResult(@Valid @ModelAttribute("result") CreateResultViewModel result,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("olympiads", olympiadService.get());
+            model.addAttribute("countries", countryService.get());
             return "/results/create-result";
         }
         resultService.create(modelMapper.map(result, ResultDTO.class));

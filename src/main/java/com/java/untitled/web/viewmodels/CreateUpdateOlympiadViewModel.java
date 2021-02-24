@@ -17,8 +17,6 @@ public class CreateUpdateOlympiadViewModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    private Country host;
-
     @NotBlank
     @Size(min = 5, max = 15, message = "City must be between 5 and 15 characters long!")
     private String city;
@@ -28,4 +26,6 @@ public class CreateUpdateOlympiadViewModel {
 
     @NotNull
     private Integer countries;
+
+    private Country host;
 }

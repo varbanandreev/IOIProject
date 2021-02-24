@@ -8,42 +8,42 @@
     <form action="#" th:action="@{/results/create}" th:object="${result}" method="post">
         <div class="form-group form-center">
             <div class="form-group">
-                <label for="country">Country</label>
-                <select class="form-control" th:field="*{country}" id="country">
-                    <option disabled value="">Select Country</option>
-                    <option th:each="p : ${countries}" th:value="${p.id}"
-                            th:text="${p.name}"></option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="olympiad">Olympiad</label>
                 <select class="form-control" th:field="*{olympiad}" id="olympiad">
                     <option disabled value="">Select Olympiad</option>
-                    <option th:each="p : ${olympiads}" th:value="${p.id}"
-                            th:text="|${p.city} ${#dates.format(p.date, 'yyyy-MM-dd')}|"></option>
+                    <option th:each="o : ${olympiads}" th:value="${o.id}"
+                            th:text="|${o.city} ${#dates.format(o.date, 'yyyy')}|"></option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="contestantName">Contestant Name</label>
+                <input class="form-control" type="text" th:field="*{contestantName}" placeholder="Name"
+                id="contestantName">
+                <span class="text-danger" th:if="${#fields.hasErrors('contestantName')}" th:errors="*{contestantName}">Contestant Name Error</span>
+            </div>
+            <div class="form-group">
+                <label for="country">Contestant Country</label>
+                <select class="form-control" th:field="*{country}" id="country">
+                    <option disabled value="">Select Country</option>
+                    <option th:each="c : ${countries}" th:value="${c.id}"
+                            th:text="${c.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="olympiadRank">Rank</label>
+                <input class="form-control" type="text" th:field="*{olympiadRank}" placeholder="Rank" id="olympiadRank">
+                <span class="text-danger" th:if="${#fields.hasErrors('olympiadRank')}"
+                      th:errors="*{olympiadRank}">Rank Error</span>
             </div>
             <div class="form-group">
                 <label for="medal">Medal</label>
-                <select class="form-control" id="medal">
+                <select class="form-control" th:field="*{medal}" id="medal">
                     <option disabled value="">Select Medal</option>
-                    <option value="1">Gold</option>
-                    <option value="2">Silver</option>
-                    <option value="3">Bronze</option>
-                    <option value="4">None</option>
+                    <option th:each="medal : ${medals}" th:value="${medal}"
+                            th:text="${medal}"></option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="olymRank">Rank</label>
-                <input class="form-control" type="text" th:field="*{olymRank}" placeholder="Rank" id="olymRank">
-                <span class="text-danger" th:if="${#fields.hasErrors('olymRank')}" th:errors="*{olymRank}">Rank Error</span>
-            </div>
-            <div class="form-group">
-                <label for="contestantName">Contestant</label>
-                <input class="form-control" type="text" th:field="*{contestantName}" placeholder="Contestant Name" id="contestantName">
-                <span class="text-danger" th:if="${#fields.hasErrors('contestantName')}" th:errors="*{contestantName}">Contestant Error</span>
-            </div>
+
             <button type="submit" class="btn btn-primary">Add</button>
         </div>
     </form>

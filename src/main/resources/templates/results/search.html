@@ -3,15 +3,15 @@
 <head th:replace="partials :: head"></head>
 <body>
 <header th:replace="partials :: header"></header>
-<h4>Search for Olympiads by Host</h4>
+<h4>Search for olympiad results by country</h4>
 <div class="col-6">
     <form action="#" th:action="@{/results/olympiad}" method="get">
         <div class="form-group form-center">
             <div class="form-group">
-                <label for="name">Host</label>
-                <input class="form-control" type="text" th:name="olympiadHost" placeholder="Olympiad Host" id="name">
+                <label for="name">Country</label>
+                <input class="form-control" type="text" th:name="countryName" placeholder="Country Name" id="name">
             </div>
-            <button type="submit" class="btn btn-primary">Find History</button>
+            <button type="submit" class="btn btn-primary">Find Results</button>
         </div>
     </form>
 </div>

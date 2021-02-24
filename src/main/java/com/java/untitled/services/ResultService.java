@@ -14,5 +14,7 @@ public interface ResultService {
 
     Result update(long id, ResultDTO resultDTO);
 
+    List<ResultDTO> getResultsByCountryName(String countryName);
+
     void delete(long id);
 }

@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="gp">Host</label>
                 <select class="form-control" th:field="${olympiad.host}" id="gp">
-                    <option value="">Select Host</option>
+                    <option disabled value="">Select Host</option>
                     <option th:each="country : ${countries}" th:value="${country.id}"
                             th:text="${country.name}"></option>
                 </select>

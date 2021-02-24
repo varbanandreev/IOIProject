@@ -24,14 +24,12 @@
         <h3>Olympiads</h3>
         <h3 th:unless="${olympiads} and ${olympiads.size()}">No olympiads found.</h3>
         <table th:if="${olympiads.size()>0}" class="table table-hover">
-            <th>Id</th>
             <th>Year</th>
             <th>Host</th>
             <th>City</th>
             <th>Contestants</th>
             <th>Countries</th>
             <tr th:each="olympiad : ${olympiads}">
-                <td th:text="${olympiad.id}"></td>
                 <td th:text="${#dates.format(olympiad.date, 'yyyy')}"></td>
                 <td th:text="${olympiad.host.name}"></td>
                 <td th:text="${olympiad.city}"></td>

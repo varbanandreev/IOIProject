@@ -26,7 +26,8 @@
 }
 
 body {
-    background: hsl(198, 0%, 91%) !important;
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(254,197,255,1) 0%, rgba(170,195,255,1) 100%) !important;
 }
 
 #welcome {

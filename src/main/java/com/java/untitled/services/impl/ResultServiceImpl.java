@@ -43,6 +43,13 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
+    public List<ResultDTO> getResultsByCountryName(String countryName) {
+        return resultRepository.findAllByCountryName(countryName).stream()
+                .map(this::convertToResultDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void delete(long id) {
         resultRepository.deleteById(id);
     }
